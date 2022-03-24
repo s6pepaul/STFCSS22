@@ -1,6 +1,8 @@
 #include "TMath.h"
 #include "TCanvas.h"
 #include "TF1.h"
+#include "TH1.h"
+#include "TFile.h"
 
 void Exercise2(){
 	
@@ -14,7 +16,11 @@ void Exercise2(){
 
 	h1->FillRandom("f1",5000);
 	h1->Draw();
-	
+
+	/******* Save results ********/
+	c1->SaveAs("Exercise2a.png");
+
+	/*******************/
 	/***** PART 2 ******/
 	TCanvas* c2 = new TCanvas("c2","Exercise2b");
 	h1->Draw();
@@ -36,7 +42,16 @@ void Exercise2(){
 	h1->GetYaxis()->SetRangeUser(0,1.2*h3->GetMaximum());
 	
 	/******* Save results ********/
-	c1->SaveAs("Exercise2a.png");
 	c2->SaveAs("Exercise2b.png");
+
+	/*****************************/
+	TFile* outfile = new TFile("ex2.root", "RECREATE");
+	f1->Write();
+	h1->Write();
+	f2->Write();
+	h2->Write();
+	f3->Write();
+	h3->Write();
+	outfile->Close();
 	
 }
