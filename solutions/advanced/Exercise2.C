@@ -5,7 +5,7 @@
 #include "TFile.h"
 
 void Exercise2(){
-	TFile* data = new TFile("../../data/data_ex2.root","READ");
+	TFile* data = new TFile("../../data/data_advanced_ex2.root","READ");
     TH1F* hist1 = (TH1F*)(data->Get("h1"))->Clone("hist1");
     hist1->SetDirectory(0);
     TH1F* hist2 = (TH1F*)(data->Get("h2"))->Clone("hist2");
