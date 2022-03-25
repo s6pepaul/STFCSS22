@@ -1,57 +1,41 @@
 #include "TMath.h"
 #include "TCanvas.h"
 #include "TF1.h"
-#include "TH1.h"
 #include "TFile.h"
+#include "TGraph.h"
+#include "TGraphErrors.h"
+
 
 void Exercise2(){
-	
+    
+    /*******************/
 	/***** PART 1 ******/
-	TCanvas* c1 = new TCanvas("c1","Exercise2a");
-	TH1F* h1 = new TH1F("h1","",100,0,10);
-	TF1* f1 = new TF1("f1","gaus(0)",0,10);
-	f1->SetParameter(0,1);
-	f1->SetParameter(1,5);
-	f1->SetParameter(2,1);
+    Double_t x[10] = {0,1,2,3,4,5,6,7,8,9};
+    Double_t y[10] = {0,2.1,1.2,4.3,3.4,5.5,4.6,7.7,9.8,8.9};
+    TGraph* g = new TGraph(10,x,y);
+    g->SetNameTitle("graph","graph");
 
-	h1->FillRandom("f1",5000);
-	h1->Draw();
+    TCanvas* c1 = new TCanvas("c1","TGraph");
+    g->Draw();
 
-	/******* Save results ********/
+    /******* Save results ********/
 	c1->SaveAs("Exercise2a.png");
 
-	/*******************/
+    /*******************/
 	/***** PART 2 ******/
-	TCanvas* c2 = new TCanvas("c2","Exercise2b");
-	h1->Draw();
-	TH1F* h2 = new TH1F("h2","",100,0,10);
-	TF1* f2 = new TF1("f2","pol1(0)",0,10);
-	f2->SetParameter(0,20);
-	f2->SetParameter(1,2);
-	h2->FillRandom("f2",5000);
-	h2->SetLineColor(kRed);
-	h2->Draw("SAME");
-	
-	TH1F* h3 = new TH1F("h3","",100,0,10);
-	TF1* f3 = new TF1("f3","gaus(0)+pol1(3)",0,10);
-	f3->SetParameters(119.68,5,1,20,2); //normalise gaussian such that integrals from 0 to 10 are equal
-	h3->FillRandom("f3",10000);
-	h3->SetLineColor(kGreen);
-	h3->Draw("SAME");
-	
-	h1->GetYaxis()->SetRangeUser(0,1.2*h3->GetMaximum());
-	
-	/******* Save results ********/
+    Double_t dx[10] = {0.1,.1,.2,.3,.4,.5,.6,.7,.8,.9};
+    Double_t dy[10] = {0.1,.1,.2,.3,.4,.5,.6,.7,.8,.9};
+    TCanvas* c2 = new TCanvas("c2","TGraphErrors");
+    TGraphErrors* ge = new TGraphErrors(10,x,y,dx,dy);
+    ge->SetNameTitle("errorgraph","errorgraph");
+    ge->Draw();
+
+    /******* Save results ********/
 	c2->SaveAs("Exercise2b.png");
 
 	/*****************************/
 	TFile* outfile = new TFile("ex2.root", "RECREATE");
-	f1->Write();
-	h1->Write();
-	f2->Write();
-	h2->Write();
-	f3->Write();
-	h3->Write();
+	g->Write();
+	ge->Write();
 	outfile->Close();
-	
 }
