@@ -18,7 +18,6 @@
 
 #include "TH1.h"
 #include "TF1.h"
-#include "TFile.h"
 
 // Headers needed by this particular selector
 
