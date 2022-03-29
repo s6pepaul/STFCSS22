@@ -16,6 +16,8 @@ void Exercise3(){
 
 	h1->FillRandom("f1",5000);
 	h1->Draw();
+	std::cout << "Mean of histogram: " << h1->GetMean() << " +/- " << h1->GetMeanError() << std::endl;
+	std::cout << "Std of histogram: " << h1->GetStdDev() << " +/- " << h1->GetStdDevError() << std::endl;
 
 	/******* Save results ********/
 	c1->SaveAs("Exercise3a.png");
