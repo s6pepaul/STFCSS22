@@ -7,7 +7,7 @@
 
 void Exercise3(){
 	TFile* dataFile = new TFile("../../data/data_advanced_ex3.root","READ");
-    TTree* data = ((TTree*)dataFile->Get("dataTree"))->CloneTree();
+    TTree* data = (TTree*)dataFile->Get("dataTree");
     
 
     data->Print();
