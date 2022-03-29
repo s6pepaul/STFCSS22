@@ -47,5 +47,10 @@ void Exercise3(){
     TCanvas* c5 = new TCanvas("c5","m5");
     hist5->Draw();
 
+    c1->SaveAs("Exercise3_c1.png");
+    c2->SaveAs("Exercise3_c2.png");
+    c3->SaveAs("Exercise3_c3.png");
+    c4->SaveAs("Exercise3_c4.png");
+    c5->SaveAs("Exercise3_c5.png");
 
 }

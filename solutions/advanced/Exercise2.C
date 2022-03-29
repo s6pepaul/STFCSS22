@@ -68,5 +68,10 @@ void Exercise2(){
     Double_t yield5 = TMath::Sqrt(2*TMath::Pi())*f5->GetParameter("p0")*f5->GetParameter("p2")*hist5->GetNbinsX()/(hist5->GetBinLowEdge(hist5->GetNbinsX()+1)-hist5->GetBinLowEdge(1));
     std::cout << "Yield in hist5: " << yield5 << std::endl;
 
+    c1->SaveAs("Exercise2_c1.png");
+    c2->SaveAs("Exercise2_c2.png");
+    c3->SaveAs("Exercise2_c3.png");
+    c4->SaveAs("Exercise2_c4.png");
+    c5->SaveAs("Exercise2_c5.png");
 
 }
