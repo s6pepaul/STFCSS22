@@ -8,8 +8,7 @@
 void Exercise3(){
 	TFile* dataFile = new TFile("../../data/data_advanced_ex3.root","READ");
     TTree* data = ((TTree*)dataFile->Get("dataTree"))->CloneTree();
-    data->SetDirectory(0);
-    dataFile->Close();
+    
 
     data->Print();
     Double_t m1,m2,m3,m4,m5;
@@ -52,5 +51,6 @@ void Exercise3(){
     c3->SaveAs("Exercise3_c3.png");
     c4->SaveAs("Exercise3_c4.png");
     c5->SaveAs("Exercise3_c5.png");
+
 
 }
